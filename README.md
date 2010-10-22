@@ -30,9 +30,12 @@ Lazing defines the following lazy transformation methods:
 * `mapping`
 
 ## Supported Rubies
-Lazing has only been tested with Ruby 1.9.2-p0
+Lazing requires Ruby 1.9.  It has been tested with Ruby 1.9.2-p0.
 
 ## Installation
+Lazing is distributed as a gem.  To install, use the command:
+
+    gem install lazing
 
 ## Obtaining the Latest Version
 Lazing is hosted on github at
@@ -41,6 +44,16 @@ Lazing is hosted on github at
 A local clone of the repository can be obtained via:
 
     git clone git://github.com/gregspurrier/lazing.git
+
+## Related work
+After implementing [`select_first`](http://blog.rujubu.com/articles/selecting-only-what-you-need)
+for a project I was working on, I searched for lazy enumeration support in Ruby.
+I came across this [blog post](http://www.michaelharrison.ws/weblog/?p=163) and
+it became the inspiration for Lazing.
+
+I later discovered that my implementation of `selecting` is almost identical
+to the `infinite_select` example given in Programming Ruby: The Pragmatic
+Programmers' Guide by Dave Thomas.
 
 ## License
 Lazing is Copyright (c) 2010 by Greg Spurrier and released under the terms of
