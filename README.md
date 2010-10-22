@@ -29,6 +29,9 @@ Lazing defines the following lazy transformation methods:
 * `collecting`
 * `mapping`
 
+## Supported Rubies
+Lazing has only been tested with Ruby 1.9.2-p0
+
 ## Installation
 
 ## Obtaining the Latest Version
