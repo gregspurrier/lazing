@@ -17,10 +17,27 @@ Compare the above with the behavior of the non-lazy standard version:
       from (irb):4
       from irb:17:in `<main>'
 
+## Lazy Methods
+Lazing defines the following lazy filter methods:
+
+* `finding_all`
+* `rejecting`
+* `selecting`
+
+Lazing defines the following lazy transformation methods:
+
+* `collecting`
+* `mapping`
+
 ## Installation
 
 ## Obtaining the Latest Version
 Lazing is hosted on github at
+[http://github.com/gregspurrier/lazing](http://github.com/gregspurrier/lazing).
+
+A local clone of the repository can be obtained via:
+
+    git clone git://github.com/gregspurrier/lazing.git
 
 ## License
 Lazing is Copyright (c) 2010 by Greg Spurrier and released under the terms of
