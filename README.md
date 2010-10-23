@@ -30,7 +30,10 @@ Lazing defines the following lazy transformation methods:
 * `mapping`
 
 ## Supported Rubies
-Lazing requires Ruby 1.9.  It has been tested with Ruby 1.9.2-p0.
+Lazing requires Ruby 1.9.  It has been tested with:
+
+* Ruby 1.9.1-p378
+* Ruby 1.9.2-p0
 
 ## Installation
 Lazing is distributed as a gem.  To install, use the command:
