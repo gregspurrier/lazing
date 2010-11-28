@@ -7,7 +7,7 @@ begin
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "lazing"
     gemspec.summary = "Making Enumerable a little lazy"
-    gemspec.description = "Lazy equivalents for many of the methods in Enumerable"
+    gemspec.description = "Lazy equivalents for many of the methods in Enumerable. Now supporting Ruby 1.8.7, 1.9.x, JRuby, and Rubinius."
     gemspec.email = "greg@rujubu.com"
     gemspec.homepage = "http://github.com/gregspurrier/lazing"
     gemspec.author = "Greg Spurrier"

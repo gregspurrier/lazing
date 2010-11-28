@@ -30,10 +30,12 @@ Lazing defines the following lazy transformation methods:
 * `mapping`
 
 ## Supported Rubies
-Lazing requires Ruby 1.9.  It has been tested with:
+Lazing has been testing with:
 
-* Ruby 1.9.1-p378
+* Ruby 1.8.7-p302
 * Ruby 1.9.2-p0
+* JRuby 1.5.5
+* Rubinius 1.1.1
 
 ## Installation
 Lazing is distributed as a gem.  To install, use the command:
@@ -52,11 +54,15 @@ A local clone of the repository can be obtained via:
 After implementing [`select_first`](http://blog.rujubu.com/articles/selecting-only-what-you-need)
 for a project I was working on, I searched for lazy enumeration support in Ruby.
 I came across this [blog post](http://www.michaelharrison.ws/weblog/?p=163) and
-it became the inspiration for Lazing.
+it became the inspiration for the 1.9.x implementation of Lazing.
 
-I later discovered that my implementation of `selecting` is almost identical
-to the `infinite_select` example given in Programming Ruby: The Pragmatic
-Programmers' Guide by Dave Thomas.
+I later discovered that my 1.9.2 implementation of `selecting` is almost
+identical to the `infinite_select` example given in Programming Ruby: The
+Pragmatic Programmers' Guide by Dave Thomas.
+
+The implementation for Rubies other than MRI 1.9.x is heavily influenced by
+Scheme's streams as described in _The Structure and Interpretation of Computer
+Programs_ by Harold Abelson and Gerald Jay Sussman.
 
 ## License
 Lazing is Copyright (c) 2010 by Greg Spurrier and released under the terms of

@@ -1,6 +1,8 @@
-unless RUBY_VERSION >= '1.9'
-  raise "Lazing requires Ruby 1.9."
+base_dir = File.dirname(__FILE__)
+if RUBY_VERSION >= '1.9'
+  require File.expand_path('lazing/filters', base_dir)
+  require File.expand_path('lazing/transformers', base_dir)
+else
+  require File.expand_path('lazing/stream', base_dir)
+  require File.expand_path('enumerable', base_dir)
 end
-
-require File.expand_path('../lazing/filters', __FILE__)
-require File.expand_path('../lazing/transformers', __FILE__)

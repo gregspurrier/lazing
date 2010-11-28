@@ -10,6 +10,10 @@ describe Enumerable, '#collecting' do
     (1..20).collecting {|x| raise 'boom' if x == 4; x * x}.first(3).
         should == [1,4,9]
   end
+
+  it 'allows nils in the stream' do
+    [1,2,3,nil,9,10].collecting {|x| x}.to_a.should == [1,2,3,nil,9,10]
+  end
 end
 
 describe Enumerable, '#mapping' do
@@ -21,5 +25,9 @@ describe Enumerable, '#mapping' do
   it 'processes items on demand' do
     (1..20).mapping {|x| raise 'boom' if x == 4; x * x}.first(3).
         should == [1,4,9]
+  end
+
+  it 'allows nils in the stream' do
+    [1,2,3,nil,9,10].mapping {|x| x}.to_a.should == [1,2,3,nil,9,10]
   end
 end

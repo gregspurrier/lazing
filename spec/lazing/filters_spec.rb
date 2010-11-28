@@ -10,6 +10,10 @@ describe Enumerable, '#finding_all' do
     (1..20).finding_all {|x| raise 'boom' if x == 6; x.odd?}.first(3).
         should == [1,3,5]
   end
+
+  it 'allows nils in the stream' do
+    [1,2,3,nil,9,10].finding_all {|x| true}.to_a.should == [1,2,3,nil,9,10]
+  end
 end
 
 describe Enumerable, '#rejecting' do
@@ -22,6 +26,10 @@ describe Enumerable, '#rejecting' do
     (1..20).rejecting {|x| raise 'boom' if x == 6; x.even?}.first(3).
         should == [1,3,5]
   end
+
+  it 'allows nils in the stream' do
+    [1,2,3,nil,9,10].rejecting {|x| false}.to_a.should == [1,2,3,nil,9,10]
+  end
 end
 
 describe Enumerable, '#selecting' do
@@ -33,5 +41,9 @@ describe Enumerable, '#selecting' do
   it 'processes items on demand' do
     (1..20).selecting {|x| raise 'boom' if x == 6; x.odd?}.first(3).
         should == [1,3,5]
+  end
+
+  it 'allows nils in the stream' do
+    [1,2,3,nil,9,10].selecting {|x| true}.to_a.should == [1,2,3,nil,9,10]
   end
 end
