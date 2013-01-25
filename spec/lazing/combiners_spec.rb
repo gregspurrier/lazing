@@ -3,9 +3,9 @@ require File.expand_path('../../spec_helper', __FILE__)
 describe Enumerator, "#concating" do
 
   it "returns the same collection as concat" do
-    as = Enumerator.new (1..20)
-    bs = Enumerator.new (100..120)
-    (as.concating bs).to_a.should == as.to_a.concat(bs.to_a)
+    as = [1,2,3]
+    bs = [4,5,6]
+    (as.concating bs).to_a.should == as.concat(bs)
   end
 
   it "processes items on demand" do
@@ -18,8 +18,8 @@ end
 describe Enumerator, '#flattening' do
 
   it "returns the same collection as flatten" do
-    enums = (1..3).mapping {|i| Enumerator.new(1..i)}
-    enums.flattening.to_a.should == [1, 1,2, 1,2,3]
+    tree = [[1], [1,2], [1,2,3]]
+    tree.flattening.to_a.should == [1, 1,2, 1,2,3]
   end
 
   it "processes items on demand" do

@@ -1,4 +1,4 @@
-class Enumerator
+module Enumerable
   def concating(other)
     Enumerator.new do |yielder|
       each do |item|
