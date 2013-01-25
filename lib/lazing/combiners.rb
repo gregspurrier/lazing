@@ -1,5 +1,5 @@
 class Enumerator
-  def concatenating(other)
+  def concating(other)
     Enumerator.new do |yielder|
       each do |item|
         yielder.yield item
