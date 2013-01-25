@@ -35,8 +35,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Making Enumerable a little lazy}
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "guard-rspec"
   s.test_files = [
     "spec/lazing/filters_spec.rb",
      "spec/lazing/transformers_spec.rb",
