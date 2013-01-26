@@ -10,14 +10,14 @@ module Enumerable
     end
   end
 
-  def flattening
+  def flattening(depth = Float::INFINITY)
     Enumerator.new do |yielder|
       stack = [self.each]
       while !stack.empty?
         node = stack.last
         begin
           child = node.next
-          if child.respond_to? :each
+          if stack.size <= depth and child.respond_to? :each
             stack.push child.each
           else
             yielder.yield child

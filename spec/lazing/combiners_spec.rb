@@ -20,6 +20,7 @@ describe Enumerator, '#flattening' do
   it "returns the same collection as flatten" do
     tree = [[1], [1,2], [1,[2,3]]]
     tree.flattening.to_a.should == tree.flatten
+    tree.flattening(1).to_a.should == tree.flatten(1)
   end
 
   it "processes items on demand" do
