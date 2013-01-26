@@ -12,9 +12,18 @@ module Enumerable
 
   def flattening
     Enumerator.new do |yielder|
-      each do |sub_enum|
-        sub_enum.each do |item|
-          yielder.yield item
+      stack = [self.each]
+      while !stack.empty?
+        node = stack.last
+        begin
+          child = node.next
+          if child.respond_to? :each
+            stack.push child.each
+          else
+            yielder.yield child
+          end
+        rescue StopIteration
+          stack.pop
         end
       end
     end
