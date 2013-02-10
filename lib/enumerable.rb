@@ -5,9 +5,8 @@ module Enumerable
   alias collecting mapping
 
   def rejecting(&blk)
-    Lazing::Stream.from_e(self).rejecting(&blk)
+    selecting {|item| !blk.call(item)}
   end
-
 
   def selecting(&blk)
     Lazing::Stream.from_e(self).selecting(&blk)

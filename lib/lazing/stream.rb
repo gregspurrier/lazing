@@ -33,11 +33,6 @@ module Lazing
     end
     alias collecting mapping
 
-
-    def rejecting(&blk)
-      selecting {|item| !blk.call(item)}
-    end
-
     def selecting(&blk)
       if(blk.call(head))
         Stream.new(head) do
@@ -109,9 +104,18 @@ module Lazing
 
   class EmptyStream
     include Singleton
+    include Enumerable
 
     def empty?
       true
+    end
+
+    def mapping
+      []
+    end
+
+    def selecting
+      []
     end
 
     def concating_block

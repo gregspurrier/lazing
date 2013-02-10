@@ -22,6 +22,10 @@ require File.expand_path('../../spec_helper', __FILE__)
       expected = range.each_with_index.map {|letter,index| [letter,index]}
       range.each_with_index.send(transformation) {|letter,index| [letter,index]}.to_a.should == expected
     end
+
+    it "leaves the empty array unchanged" do
+      [].send(transformation) {|x| x}.to_a.should == []
+    end
   end
 
 end
