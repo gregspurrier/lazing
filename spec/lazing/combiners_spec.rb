@@ -1,6 +1,6 @@
 require File.expand_path('../../spec_helper', __FILE__)
 
-describe Enumerator, "#concating" do
+describe Enumerable, "#concating" do
 
   it "returns the same collection as concat" do
     as = [1,2,3]
@@ -9,7 +9,7 @@ describe Enumerator, "#concating" do
   end
 
   it "processes items on demand" do
-    as = Enumerator.new (1..2)
+    as = [1,2].mapping {|i| i}
     bs = [3,4].mapping {|i| raise 'boom' if i == 4; i}
     (as.concating bs).first(3).should == [1,2,3]
   end
@@ -19,9 +19,13 @@ describe Enumerator, "#concating" do
     bs = [4,5,6]
     (as.each_with_index.concating bs.each_with_index).to_a.should == as.each_with_index.to_a.concat(bs.each_with_index.to_a)
   end
+
+  it "works on an empty array" do
+    [].concating([1,2]).to_a.should == [1,2]
+  end
 end
 
-describe Enumerator, '#flattening' do
+describe Enumerable, '#flattening' do
 
   it "returns the same collection as flatten" do
     tree = [[1], [1,2], [1,[2,3]]]
@@ -35,5 +39,9 @@ describe Enumerator, '#flattening' do
 
     enums.flattening.first(3).should == [1, 1,2]
     processed_items.should == 3
+  end
+
+  it "returns empty list for empty list" do
+    [].flattening.should == []
   end
 end
