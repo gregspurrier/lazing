@@ -13,6 +13,12 @@ describe Enumerator, "#concating" do
     bs = [3,4].mapping {|i| raise 'boom' if i == 4; i}
     (as.concating bs).first(3).should == [1,2,3]
   end
+
+  it "works with multi arguments blocks" do
+    as = [1,2,3]
+    bs = [4,5,6]
+    (as.each_with_index.concating bs.each_with_index).to_a.should == as.each_with_index.to_a.concat(bs.each_with_index.to_a)
+  end
 end
 
 describe Enumerator, '#flattening' do
@@ -30,5 +36,4 @@ describe Enumerator, '#flattening' do
     enums.flattening.first(3).should == [1, 1,2]
     processed_items.should == 3
   end
-
 end

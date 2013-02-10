@@ -1,11 +1,11 @@
 module Enumerable
   def concating(other)
     Enumerator.new do |yielder|
-      each do |item|
-        yielder.yield item
+      each do |*item|
+        yielder.yield *item
       end
-      other.each do |item|
-        yielder.yield item
+      other.each do |*item|
+        yielder.yield *item
       end
     end
   end

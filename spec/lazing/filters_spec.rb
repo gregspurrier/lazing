@@ -14,6 +14,10 @@ describe Enumerable, '#finding_all' do
   it 'allows nils in the stream' do
     [1,2,3,nil,9,10].finding_all {|x| true}.to_a.should == [1,2,3,nil,9,10]
   end
+
+  it "works with multi arguments blocks" do
+    (1..20).each_with_index.finding_all {|x,y| y.odd? }.to_a.should == (1..20).each_with_index.find_all {|x,y| y.odd? }
+  end
 end
 
 describe Enumerable, '#rejecting' do
@@ -30,6 +34,10 @@ describe Enumerable, '#rejecting' do
   it 'allows nils in the stream' do
     [1,2,3,nil,9,10].rejecting {|x| false}.to_a.should == [1,2,3,nil,9,10]
   end
+
+  it "works with multi arguments blocks" do
+    (1..20).each_with_index.rejecting {|x,y| y.odd? }.to_a.should == (1..20).each_with_index.reject {|x,y| y.odd? }
+  end
 end
 
 describe Enumerable, '#selecting' do
@@ -45,5 +53,9 @@ describe Enumerable, '#selecting' do
 
   it 'allows nils in the stream' do
     [1,2,3,nil,9,10].selecting {|x| true}.to_a.should == [1,2,3,nil,9,10]
+  end
+
+  it "works with multi arguments blocks" do
+    (1..20).each_with_index.selecting {|x,y| y.odd? }.to_a.should == (1..20).each_with_index.select {|x,y| y.odd? }
   end
 end
