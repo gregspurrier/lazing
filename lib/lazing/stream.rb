@@ -57,15 +57,15 @@ module Lazing
     end
     alias finding_all selecting
 
-    def concating(other)
+    def concating_block(&other_block)
       Stream.new(head) do
-        tail.concating(other)
+        tail.concating_block(&other_block)
       end
     end
 
     def flattening(depth = INFINITE_DEPTH)
       if head.respond_to?(:flattening) and 0 < depth
-        head.flattening(depth - 1).concating(lambda { tail.flattening(depth) })
+        head.flattening(depth - 1).concating_block { tail.flattening(depth) }
       else
         Stream.new(head) do
           tail.flattening(depth)
@@ -114,12 +114,8 @@ module Lazing
       true
     end
 
-    def concating(other)
-      if other.respond_to? :call
-        Stream.from_e(other.call)
-      else
-        Stream.from_e(other)
-      end
+    def concating_block
+      Stream.from_e(yield)
     end
 
     def flattening(depth = INFINITE_DEPTH)

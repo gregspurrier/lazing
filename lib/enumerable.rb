@@ -15,7 +15,11 @@ module Enumerable
   alias finding_all selecting
 
   def concating(other)
-    Lazing::Stream.from_e(self).concating(other)
+    concating_block {other}
+  end
+
+  def concating_block(&other_block)
+    Lazing::Stream.from_e(self).concating_block(&other_block)
   end
 
   INFINITE_DEPTH = 1.0/0.0
