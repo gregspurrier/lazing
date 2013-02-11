@@ -42,6 +42,6 @@ describe Enumerable, '#flattening' do
   end
 
   it "returns empty list for empty list" do
-    [].flattening.should == []
+    [].flattening.to_a.should == []
   end
 end
