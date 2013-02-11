@@ -33,11 +33,6 @@ module Lazing
     end
     alias collecting mapping
 
-
-    def rejecting(&blk)
-      selecting {|item| !blk.call(item)}
-    end
-
     def selecting(&blk)
       if(blk.call(head))
         Stream.new(head) do
@@ -57,6 +52,22 @@ module Lazing
     end
     alias finding_all selecting
 
+    def concating_block(&other_block)
+      Stream.new(head) do
+        tail.concating_block(&other_block)
+      end
+    end
+
+    def flattening(depth = INFINITE_DEPTH)
+      if head.respond_to?(:flattening) and 0 < depth
+        head.flattening(depth - 1).concating_block { tail.flattening(depth) }
+      else
+        Stream.new(head) do
+          tail.flattening(depth)
+        end
+      end
+    end
+
     def each
       stream = self
       loop do
@@ -68,6 +79,14 @@ module Lazing
 
     def self.from_a(array)
       from_a_internal(array, 0, array.size - 1)
+    end
+
+    def self.from_e(enumerable)
+      if enumerable.instance_of? Stream
+        enumerable
+      else
+        from_a(enumerable.to_a)
+      end
     end
 
   private
@@ -85,9 +104,26 @@ module Lazing
 
   class EmptyStream
     include Singleton
+    include Enumerable
 
     def empty?
       true
+    end
+
+    def mapping
+      []
+    end
+
+    def selecting
+      []
+    end
+
+    def concating_block
+      Stream.from_e(yield)
+    end
+
+    def flattening(depth = INFINITE_DEPTH)
+      []
     end
   end
 end

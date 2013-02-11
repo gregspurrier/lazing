@@ -5,8 +5,8 @@ module Enumerable
   # member of the collection.
   def mapping(&blk)
     Enumerator.new do |yielder|
-      each do |item|
-        yielder.yield blk.call(item)
+      each do |*items|
+        yielder.yield blk.call(*items)
       end
     end
   end
